@@ -14,7 +14,7 @@ install:
 - pip install pylint
 script:
 - nosetests
-- pylint
+- pylint propiedades/propiedades
 after_success: coveralls
 os:
 - linux
