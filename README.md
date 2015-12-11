@@ -20,11 +20,7 @@ Diariamente se scrapean los datos de alquiler y venta de inmuebles de la CABA, s
 * Recibir avisos de unidades por debajo del valor de mercado para un perfil particular.
 
 ## Instalación
-
-- Instalar Python 2.7
-- `brew install psycopg2`
-- `pip install -r requirements.txt`
-
+ehhhhh viva la pepa
 ## Convención de estilo
 Este proyecto sigue las convenciones de la [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html).
 
