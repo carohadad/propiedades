@@ -27,7 +27,9 @@ Este proyecto sigue las convenciones de la [Google Python Style Guide](https://g
 
 Ver un ejemplo completo del [uso de docstrings en python según la guía de Google](http://sphinxcontrib-napoleon.readthedocs.org/en/latest/example_google.html#example-google)
 
-
+*Linting en Sublime Text*
+* **Anaconda**: Setear las preferencias con `"use_pylint": true`
+* **PEP8 Autoformat**: Setear las preferencias con `"autoformat_on_save": true`
 
 
 
