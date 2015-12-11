@@ -34,7 +34,6 @@ Correr las migraciones
 Para probar si esta todo configurado bien correr:
 $ python manage.py dbshell
 
-
 ## Convención de estilo
 Este proyecto sigue las convenciones de la [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html).
 
