@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/chadad/propiedades.png?label=ready&title=Ready)](https://waffle.io/chadad/propiedades)
 Scraper de precios de inmuebles.
 ===
 
