@@ -10,7 +10,7 @@ Scraper de precios de inmuebles.
 * Docker
 * Django
 * nose
-* pyflakes 
+* flake8 
 * postgresql
 
 Diariamente se scrapean los datos de alquiler y venta de inmuebles de la CABA, se guardan un una db y se realiza un analisis para la detección de outliers.
@@ -29,6 +29,7 @@ Diariamente se scrapean los datos de alquiler y venta de inmuebles de la CABA, s
 - `pip install -r requirements.txt`
 
 Correr las migraciones
+- python manage.py makemigrations
 - python manage.py migrate
 
 Para probar si esta todo configurado bien correr:
@@ -43,7 +44,7 @@ Ver un ejemplo completo del [uso de docstrings en python según la guía de Goog
 
 Instalar los siguientes paquetes con el package manager.
 
-* **Anaconda**:
+* **Anaconda**
 * **PEP8 Autoformat**: Setear las preferencias con `"autoformat_on_save": true`
 
 *Snippets en Sublime Text*
@@ -56,11 +57,13 @@ Instalar los siguientes paquetes con el package manager.
 
 Paquete de snippets: **Sublime Text 3 Snippets** o **Sublime Text 2 Snippets**
 
-*Tests*
+## Tests
 
-Para correr los tests:
+Para correr los tests: `python manage.py test`
 
-python manage.py test
+Para crear tests, debe teners en cuenta que hay que usar la clase `django.test.TestCase` en lugar de `unittest.TestCase`, ya que incluye un manejo automático de la base de datos para testeos.
+
+
 
 
 
