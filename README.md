@@ -56,6 +56,12 @@ Instalar los siguientes paquetes con el package manager.
 
 Paquete de snippets: **Sublime Text 3 Snippets** o **Sublime Text 2 Snippets**
 
+*Tests*
+
+Para correr los tests:
+
+python manage.py test
+
 
 
 
