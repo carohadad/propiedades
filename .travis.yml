@@ -13,8 +13,9 @@ install:
 - pip install nose
 - pip install flake8
 script:
-- nosetests
-- flake8 propiedades/propiedades
+- cd propiedades
+- python manage.py test
+- flake8 propiedades
 after_success: coveralls
 os:
 - linux
