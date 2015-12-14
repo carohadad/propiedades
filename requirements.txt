@@ -1,5 +1,5 @@
 nose
-pylint
+flake8
 django
 psycopg2
 scrapy

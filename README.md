@@ -29,13 +29,13 @@ Diariamente se scrapean los datos de alquiler y venta de inmuebles de la CABA, s
 - `pip install -r requirements.txt`
 
 Correr las migraciones
-- python manage.py makemigrations
-- python manage.py migrate
+- `python manage.py makemigrations`
+- `python manage.py migrate`
 
 Para probar si esta todo configurado bien correr:
 $ python manage.py dbshell
 
-## Convención de estilo
+## Convenciones de estilo
 Este proyecto sigue las convenciones de la [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html).
 
 Ver un ejemplo completo del [uso de docstrings en python según la guía de Google](http://sphinxcontrib-napoleon.readthedocs.org/en/latest/example_google.html#example-google)
@@ -61,7 +61,7 @@ Paquete de snippets: **Sublime Text 3 Snippets** o **Sublime Text 2 Snippets**
 
 Para correr los tests: `python manage.py test`
 
-Para crear tests, debe teners en cuenta que hay que usar la clase `django.test.TestCase` en lugar de `unittest.TestCase`, ya que incluye un manejo automático de la base de datos para testeos.
+Para crear tests, debe tenerse en cuenta que hay que usar la clase `django.test.TestCase` en lugar de `unittest.TestCase`, ya que incluye un manejo automático de la base de datos para testeos.
 
 
 
