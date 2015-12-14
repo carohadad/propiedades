@@ -11,10 +11,10 @@ install:
 - pip install -r requirements.txt
 - pip install coveralls
 - pip install nose
-- pip install pylint
+- pip install flake8
 script:
 - nosetests
-- pylint propiedades/propiedades
+- flake8 propiedades/propiedades
 after_success: coveralls
 os:
 - linux

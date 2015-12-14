@@ -10,7 +10,7 @@ Scraper de precios de inmuebles.
 * Docker
 * Django
 * nose
-* pylint
+* pyflakes 
 * postgresql
 
 Diariamente se scrapean los datos de alquiler y venta de inmuebles de la CABA, se guardan un una db y se realiza un analisis para la detección de outliers.
@@ -43,7 +43,7 @@ Ver un ejemplo completo del [uso de docstrings en python según la guía de Goog
 
 Instalar los siguientes paquetes con el package manager.
 
-* **Anaconda**: Setear las preferencias con `"use_pylint": true`
+* **Anaconda**:
 * **PEP8 Autoformat**: Setear las preferencias con `"autoformat_on_save": true`
 
 *Snippets en Sublime Text*
