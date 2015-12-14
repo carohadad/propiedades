@@ -14,8 +14,9 @@ install:
 - pip install flake8
 script:
 - cd propiedades
-- python manage.py test
 - flake8 propiedades
+- python manage.py test
+- coverage run manage.py test
 after_success: coveralls
 os:
 - linux
