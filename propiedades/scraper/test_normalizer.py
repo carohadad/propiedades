@@ -38,6 +38,16 @@ class NormalizerTestCase(unittest.TestCase):
 
         self.assertEqual(res, exp)
 
+    def test_geocode_address(self):
+        res = normalizer.geocode_address("Sucre 3073")
+        exp = (
+            "Mariscal Antonio José de Sucre 3073, C1428DWC CABA, Argentina",
+            [-34.5677463, -58.461533],
+            "OK"
+        )
+
+        self.assertEqual(res, exp)
+
 
 if __name__ == '__main__':
     nose.run(defaultTest=__name__)
