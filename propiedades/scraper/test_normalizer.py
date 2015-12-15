@@ -15,10 +15,14 @@ import nose
 from mock import Mock
 
 import normalizer
+import load_neighborhoods
 
 
 class NormalizerTestCase(unittest.TestCase):
     """Tests for normalizer methods."""
+
+    def set_neighborhoods_db(self):
+        load_neighborhoods.main()
 
     def test_normalize_address(self):
         normalizer.geocode_address = Mock(return_value=(
@@ -38,6 +42,7 @@ class NormalizerTestCase(unittest.TestCase):
 
         self.assertEqual(res, exp)
 
+    @unittest.skip("skip")
     def test_geocode_address(self):
         res = normalizer.geocode_address("Sucre 3073")
         exp = (
@@ -48,6 +53,13 @@ class NormalizerTestCase(unittest.TestCase):
 
         self.assertEqual(res, exp)
 
+    def test_get_neighborhood(self):
+        self.set_neighborhoods_db()
+
+        res = normalizer.get_neighborhood([-34.5677463, -58.461533])
+        exp = "Belgrano"
+
+        self.assertEqual(res, exp)
 
 if __name__ == '__main__':
     nose.run(defaultTest=__name__)

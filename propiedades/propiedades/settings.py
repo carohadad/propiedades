@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
     'webapp.apps.WebappConfig',
+    'scraper.apps.ScraperConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -77,7 +79,7 @@ WSGI_APPLICATION = 'propiedades.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'propiedades',
         # 'USER': 'user',
         # 'PASSWORD': 'password',

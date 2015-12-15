@@ -24,6 +24,7 @@ Diariamente se scrapean los datos de alquiler y venta de inmuebles de la CABA, s
 ## Instalación
 
 - Instalar Python 2.7
+- `brew install gdal`
 - `brew install postgresql`
 (para verificar que postgre funciona se puede correr psql -d postgres)
 - `brew install psycopg2` o `fink install psycopg2-py27` o `sudo port install py27-psycopg2`

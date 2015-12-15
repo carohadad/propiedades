@@ -12,8 +12,9 @@ from __future__ import unicode_literals
 from __future__ import print_function
 from __future__ import with_statement
 import os
-
 import geocoder
+
+from models import Neighborhood
 
 DEFAULT_CITY = "Ciudad Autonoma de Buenos Aires"
 DEFAULT_COUNTRY = "Argentina"
@@ -80,4 +81,17 @@ def _prenormalize_address(address):
 
 
 def get_neighborhood(coordinates):
-    pass
+    """Get neighborhood containing a latlng point in it.
+
+    Performs a spatial query against a list of neighborhoods in the defatul
+    city.
+
+    Args:
+        coordinates (list): [latitute, longitude]
+
+    Returns:
+        str: Neighborhood containing coordinates.
+    """
+    pnt_wkt = "POINT({} {})".format(coordinates[1], coordinates[0])
+    qs = Neighborhood.objects.filter(poly__contains=pnt_wkt)
+    return qs[0].name.capitalize()
