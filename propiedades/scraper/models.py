@@ -1,3 +1,14 @@
+""" Database Models for Propiedades.
+
+This module contains the database models used by the different scrapers.
+
+Models:
+    SaleListing & RentListing: Both of them have the same properties but they
+    have different behavior.
+
+
+"""
+
 from __future__ import unicode_literals
 
 from django.db import models
