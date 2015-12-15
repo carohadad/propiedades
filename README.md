@@ -1,9 +1,9 @@
-[![Stories in Ready](https://badge.waffle.io/chadad/propiedades.png?label=ready&title=Ready)](https://waffle.io/chadad/propiedades)
 Scraper de precios de inmuebles.
 ===
 
 [![Coverage Status](https://coveralls.io/repos/chadad/propiedades/badge.svg?branch=master&service=github)](https://coveralls.io/github/chadad/propiedades?branch=master)
 [![Build Status](https://travis-ci.org/chadad/propiedades.svg)](https://travis-ci.org/chadad/propiedades)
+[![Stories in Ready](https://badge.waffle.io/chadad/propiedades.png?label=ready&title=ReadyToWork)](https://waffle.io/chadad/propiedades)
 
 ## Tecnologías
 * Python
