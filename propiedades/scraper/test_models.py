@@ -66,6 +66,19 @@ class CommonListingTestCase(TestCase):
 
         new_listing.full_clean()
 
+    def test_currency_options(self):
+        new_listing = RentListing(
+            price=123,
+            currency='ARS',
+            surface=40,
+            rooms=2,
+            address='Independencia 635')
+
+        self.assertEqual(new_listing.get_currency_display(),
+                         "Pesos Argentinos")
+        new_listing.currency = 'USD'
+        self.assertEqual(new_listing.get_currency_display(), "Dolares")
+
 
 if __name__ == '__main__':
     nose.run(defaultTest=__name__)

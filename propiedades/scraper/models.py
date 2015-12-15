@@ -6,7 +6,7 @@ from django.db import models
 class CommonListing(models.Model):
     CURRENCIES = (
         ('ARS', 'Pesos Argentinos'),
-        ('USD', 'Medium'),
+        ('USD', 'Dolares'),
     )
 
     price = models.BigIntegerField()
