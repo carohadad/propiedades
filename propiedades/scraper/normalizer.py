@@ -6,6 +6,10 @@ Normalize input coming from the scrapers.
 
 This module expose methods to normalize scraped fields from properties
 websites, including geolocating tasks.
+
+Attributes:
+    DEFAULT_CITY (str): City where all geocodings are taking place.
+    DEFAULT_COUNTRY (str): Country where all geocodings are taking place.
 """
 
 from __future__ import unicode_literals
