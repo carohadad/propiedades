@@ -8,7 +8,7 @@ from django.contrib.gis.db import models as gismodels
 
 class Neighborhood(gismodels.Model):
     """Neighborhoods where properties could be."""
-    name = gismodels.CharField(max_length=255)
+    name = gismodels.CharField(max_length=255, primary_key=True)
     poly = gismodels.MultiPolygonField(srid=4326)
 
     def __unicode__(self):
