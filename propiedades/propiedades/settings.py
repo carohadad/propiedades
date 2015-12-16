@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.gis',
     'webapp.apps.WebappConfig',
-    'scraper.apps.ScraperConfig',
+    'scraper.apps.ScraperConfig'
 ]
 
 MIDDLEWARE_CLASSES = [
