@@ -16,9 +16,9 @@ from __future__ import unicode_literals
 from __future__ import print_function
 from __future__ import with_statement
 import os
-import geocoder
 
 from models import Neighborhood
+import geocoders
 
 DEFAULT_CITY = "Ciudad Autonoma de Buenos Aires"
 DEFAULT_COUNTRY = "Argentina"
@@ -65,23 +65,20 @@ def geocode_address(address):
             "OK"
             )
     """
-    g = geocoder.google(_prenormalize_address(address))
+    normalized_address, coordinates, status = None, None, None
 
-    if g.status == "OK":
-        normalized_address = g.address.decode("utf-8")
-        coordinates = g.latlng
-        status = g.status
+    for geocoder in geocoders.get():
+        try:
+            res = geocoder.normalize_and_geocode(address, DEFAULT_CITY,
+                                                 DEFAULT_COUNTRY)
+            normalized_address, coordinates, status = res
+            break
 
-    else:
-        normalized_address, coordinates = None, None
-        status = g.status
+        except geocoders.UnableToGeocode as e:
+            status = e.value
+            continue
 
     return normalized_address, coordinates, status
-
-
-def _prenormalize_address(address):
-    """Prenormalize address to maximize geocoding success probability."""
-    return ", ".join([address, DEFAULT_CITY, DEFAULT_COUNTRY])
 
 
 def get_neighborhood(coordinates):

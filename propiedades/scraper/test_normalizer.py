@@ -25,6 +25,7 @@ class NormalizerTestCase(unittest.TestCase):
         """Helper method to load neighborhoods in the db model."""
         load_neighborhoods.main()
 
+    # @unittest.skip("skip")
     def test_normalize_address(self):
         """High level mocked test of the normalize_address method."""
         normalizer.geocode_address = Mock(return_value=(
@@ -56,6 +57,7 @@ class NormalizerTestCase(unittest.TestCase):
 
         self.assertEqual(res, exp)
 
+    # @unittest.skip("skip")
     def test_get_neighborhood(self):
         """Test neighborhood assigning from coordinates."""
         self.set_neighborhoods_db()
