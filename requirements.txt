@@ -6,3 +6,4 @@ scrapy
 geocoder
 mock
 django-multisite
+unidecode
