@@ -24,17 +24,18 @@ Diariamente se scrapean los datos de alquiler y venta de inmuebles de la CABA, s
 ## Instalación
 
 - Instalar Python 2.7
+- `brew install gdal`
 - `brew install postgresql`
 (para verificar que postgre funciona se puede correr psql -d postgres)
 - `brew install psycopg2` o `fink install psycopg2-py27` o `sudo port install py27-psycopg2`
-- `pip install -r requirements.txt`
+- `pip install -e .` (instala el proyecto en modo edición: los packages listados en el *setup.py* se instalan en el path del entorno virtual de manera que permiten importaciones absolutas)
 
-Correr las migraciones
-- `python manage.py makemigrations`
+Correr las migraciones y popular la base de barrios
+- `python manage.py makemigrations --name changed_my_model`
 - `python manage.py migrate`
+- `python manage.py loaddata scraper/fixtures/initial_data.json`
 
-Para probar si esta todo configurado bien correr:
-$ python manage.py dbshell
+Para probar si esta todo configurado bien correr: `python manage.py dbshell`
 
 *Posibles errores y su solución*
 

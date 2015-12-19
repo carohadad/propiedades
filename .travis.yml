@@ -8,7 +8,7 @@ matrix:
   - python: '3.4'
   - python: pypy
 install:
-- pip install -r requirements.txt
+- pip install -e .
 - pip install coveralls
 - pip install nose
 - pip install flake8
