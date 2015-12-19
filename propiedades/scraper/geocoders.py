@@ -15,6 +15,12 @@ Example:
             res = geocoder.normalize_and_geocode(address, city, country)
             break
     normalized_address, coordinates, status = res
+
+To add a new geocoder:
+    1. A new concrete class has to subclass BaseGeocoder implementing the
+        private method used by the interface.
+    2. The new geocoder class has to be added in the get() list, in the
+        preferred priority order.
 """
 
 from __future__ import unicode_literals
@@ -26,6 +32,7 @@ import json
 
 import geocoder
 import requests
+from unidecode import unidecode
 
 
 # EXCEPTIONS
@@ -61,7 +68,7 @@ class BaseGeocoder(object):
                 [-34.5677463, -58.461533],
                 "OK")
         """
-        return cls._normalize_and_geocode(address, city, country)
+        return cls._normalize_and_geocode(unidecode(address), city, country)
 
     @classmethod
     def _prenormalize_address(cls, address, city, country):
@@ -75,10 +82,10 @@ class GoogleGeocoder(BaseGeocoder):
     @classmethod
     def _normalize_and_geocode(cls, address, city, country):
         g = geocoder.google(cls._prenormalize_address(address, city, country))
-
-        if g.status == "OK":
+        print(g.status, g.address, g.latlng)
+        if g.status == "OK" and g.street:
             normalized_address = g.address.decode("utf-8")
-            coordinates = g.latlng
+            coordinates = [unicode(coord) for coord in g.latlng]
             status = g.status
             return normalized_address, coordinates, status
 
@@ -102,6 +109,9 @@ class UsigGeocoder(BaseGeocoder):
 
         res = cls._usig_geocode(street, number)
 
+        if res["Normalizacion"]["TipoResultado"] != "DireccionNormalizada":
+            raise UnableToGeocode(address, city, country, "Usig")
+
         # get address and coordinates
         normalization = res["Normalizacion"]
         gkba_geocoded = res["GeoCodificacion"]
@@ -122,10 +132,32 @@ class UsigGeocoder(BaseGeocoder):
 
     @classmethod
     def _read_address(cls, address):
+        """Separate street from number like in "Sucre 3073". """
         return re.match("(\D+)\s*(\d+)", address, re.UNICODE).groups()
 
     @classmethod
     def _usig_geocode(cls, street, number):
+        """Geocode an address using USIG web API.
+        Args:
+            street (str): Street name like "Sucre".
+            number (str): Address number like "3073".
+
+        Returns:
+            dict: Gecoded and normalized address.
+
+            Example:
+                {Normalizacion: {
+                    TipoResultado: "DireccionNormalizada",
+                    DireccionesCalleAltura: {
+                        direcciones: [
+                            {CodigoCalle: "20120",
+                            Calle: "SUCRE, ANTONIO JOSE DE, MCAL.",
+                            Altura: "3073"}
+                            ]
+                    },
+                GeoCodificacion: {x: "100165.847714", y: "106831.897209"}
+                }
+        """
         service = "normalizar_y_geocodificar_direcciones"
         url = cls.BASE_URL + "/" + service
 
@@ -139,6 +171,14 @@ class UsigGeocoder(BaseGeocoder):
 
     @classmethod
     def _usig_convert(cls, x, y):
+        """Convert gkba coordinates to regular geographical coordinates.
+
+        Args:
+            x, y (str): lon, lat in Gauss Kruegues Bs As projection.
+
+        Returns:
+            list: [lat, lon] in geographical coordinates.
+        """
         service = "convertir_coordenadas"
         url = cls.BASE_URL + "/" + service
 
@@ -149,4 +189,4 @@ class UsigGeocoder(BaseGeocoder):
 
 
 def get():
-    return [GoogleGeocoder, UsigGeocoder]
+    return [UsigGeocoder, GoogleGeocoder]

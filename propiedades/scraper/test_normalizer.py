@@ -16,6 +16,7 @@ from mock import Mock
 
 import normalizer
 import load_neighborhoods
+import geocoders
 
 
 class NormalizerTestCase(unittest.TestCase):
@@ -47,13 +48,28 @@ class NormalizerTestCase(unittest.TestCase):
 
     # @unittest.skip("skip")
     def test_geocode_address(self):
-        """Test method to geocode with google."""
-        res = normalizer.geocode_address("Sucre 3073")
+        """Test method that use geocoder objects to geocode.
+
+        Used a mock geocoder object, the idea is not to test geocoders (that is
+        done in test_geocoders module, but to test the higher level function.
+        """
+
         exp = (
             "Mariscal Antonio José de Sucre 3073, C1428DWC CABA, Argentina",
             [-34.5677463, -58.461533],
             "OK"
         )
+
+        class MockGeocoder(object):
+            """Mock geocoder that returns expected output."""
+
+            @classmethod
+            def normalize_and_geocode(cls, address, city, country):
+                return exp
+
+        geocoders.get = Mock(return_value=[MockGeocoder])
+
+        res = normalizer.geocode_address("Sucre 3073")
 
         self.assertEqual(res, exp)
 
